@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hakeem Miyaa Brand Design System */
+@layer base {
+  :root {
+    /* Brand Colors - Exact Ayurvedic Theme */
+    --brand-ink: 32 51% 24%;           /* Natural Brown #5a3a1d */
+    --brand-green: 155 61% 11%;        /* Deep Herbal Green #0d2b1f */
+    --brand-gold: 42 56% 58%;          /* Ayurvedic Gold #d4a653 */
+    --brand-gold-light: 42 56% 68%;
+    --brand-beige: 44 62% 91%;         /* Soft Cream Beige #f5ecd9 */
+    --text-primary: 0 0% 11%;          /* Dark Charcoal #1c1c1c */
+    --text-on-dark: 0 0% 100%;         /* White #ffffff */
+    
+    /* Core System Colors */
+    --background: 44 89% 94%;          /* Light Tan #fdf5e3 */
+    --foreground: 0 0% 11%;            /* Dark Charcoal #1c1c1c */
+    --card: 44 62% 91%;                /* Soft Cream Beige #f5ecd9 */
+    --card-foreground: 0 0% 11%;       /* Dark Charcoal #1c1c1c */
+    --popover: 44 89% 94%;             /* Light Tan #fdf5e3 */
+    --popover-foreground: 0 0% 11%;    /* Dark Charcoal #1c1c1c */
+    
+    --primary: 155 61% 11%;            /* Deep Herbal Green #0d2b1f */
+    --primary-foreground: 0 0% 100%;   /* White #ffffff */
+    --secondary: 44 62% 91%;           /* Soft Cream Beige #f5ecd9 */
+    --secondary-foreground: 0 0% 11%;  /* Dark Charcoal #1c1c1c */
+    --muted: 44 62% 91%;               /* Soft Cream Beige #f5ecd9 */
+    --muted-foreground: 32 51% 24%;    /* Natural Brown #5a3a1d */
+    --accent: 42 56% 58%;              /* Ayurvedic Gold #d4a653 */
+    --accent-foreground: 0 0% 11%;     /* Dark Charcoal #1c1c1c */
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 44 50% 80%;
+    --input: 44 50% 85%;
+    --ring: 155 61% 11%;               /* Deep Herbal Green #0d2b1f */
+    --radius: 1.25rem;
+    
+    /* Custom Brand Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(var(--brand-gold)), hsl(var(--brand-gold-light)));
+    --gradient-herbal: linear-gradient(135deg, hsl(var(--brand-green)), hsl(var(--brand-ink)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--brand-beige)));
+    
+    /* Elegant Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(var(--brand-green) / 0.15);
+    --shadow-gold: 0 8px 30px -8px hsl(var(--brand-gold) / 0.25);
+    --shadow-elegant: 0 10px 40px -10px hsl(var(--brand-ink) / 0.2);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 155 61% 11%;         /* Deep Herbal Green #0d2b1f */
+    --foreground: 0 0% 100%;           /* White #ffffff */
+    --card: 155 50% 8%;
+    --card-foreground: 0 0% 100%;      /* White #ffffff */
+    --popover: 155 61% 11%;            /* Deep Herbal Green #0d2b1f */
+    --popover-foreground: 0 0% 100%;   /* White #ffffff */
+    
+    --primary: 42 56% 58%;             /* Ayurvedic Gold #d4a653 */
+    --primary-foreground: 155 61% 11%; /* Deep Herbal Green #0d2b1f */
+    --secondary: 155 40% 15%;
+    --secondary-foreground: 0 0% 100%; /* White #ffffff */
+    --muted: 155 40% 15%;
+    --muted-foreground: 44 40% 70%;
+    --accent: 42 56% 58%;              /* Ayurvedic Gold #d4a653 */
+    --accent-foreground: 155 61% 11%;  /* Deep Herbal Green #0d2b1f */
+    
+    --border: 155 40% 20%;
+    --input: 155 40% 20%;
+    --ring: 42 56% 58%;                /* Ayurvedic Gold #d4a653 */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
