@@ -7,6 +7,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -20,7 +26,7 @@ import {
   Trash2, 
   Search, 
   User, 
-  Calendar,
+  Calendar as CalendarIcon,
   Clock,
   Pill,
   Save,
@@ -30,6 +36,8 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 
 interface Medicine {
   id: string;
@@ -58,7 +66,7 @@ const DoctorCreatePrescription = () => {
   const [symptoms, setSymptoms] = useState("");
   const [medicines, setMedicines] = useState<Medicine[]>([]);
   const [generalInstructions, setGeneralInstructions] = useState("");
-  const [followUpDate, setFollowUpDate] = useState("");
+  const [followUpDate, setFollowUpDate] = useState<Date | undefined>(undefined);
   const [validityDays, setValidityDays] = useState("30");
 
   // Mock patients data
@@ -414,7 +422,7 @@ const DoctorCreatePrescription = () => {
                   <div className="space-y-2">
                     <Label>Prescription Date</Label>
                     <div className="flex items-center gap-2 p-3 bg-muted/50 rounded-lg">
-                      <Calendar className="w-4 h-4 text-muted-foreground" />
+                      <CalendarIcon className="w-4 h-4 text-muted-foreground" />
                       <span className="text-sm">
                         {new Date().toLocaleDateString("en-US", {
                           weekday: "long",
@@ -427,13 +435,31 @@ const DoctorCreatePrescription = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="followup">Follow-up Date</Label>
-                    <Input
-                      id="followup"
-                      type="date"
-                      value={followUpDate}
-                      onChange={(e) => setFollowUpDate(e.target.value)}
-                    />
+                    <Label>Follow-up Date</Label>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className={cn(
+                            "w-full justify-start text-left font-normal",
+                            !followUpDate && "text-muted-foreground"
+                          )}
+                        >
+                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          {followUpDate ? format(followUpDate, "PPP") : <span>Pick a date</span>}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={followUpDate}
+                          onSelect={setFollowUpDate}
+                          disabled={(date) => date < new Date()}
+                          initialFocus
+                          className="pointer-events-auto"
+                        />
+                      </PopoverContent>
+                    </Popover>
                   </div>
 
                   <div className="space-y-2">
@@ -477,7 +503,7 @@ const DoctorCreatePrescription = () => {
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Follow-up</span>
                     <span className="font-medium">
-                      {followUpDate ? new Date(followUpDate).toLocaleDateString() : "Not set"}
+                      {followUpDate ? format(followUpDate, "PP") : "Not set"}
                     </span>
                   </div>
                 </CardContent>
