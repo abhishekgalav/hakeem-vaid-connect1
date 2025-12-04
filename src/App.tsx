@@ -38,6 +38,7 @@ import DoctorProfile from "./pages/DoctorProfile";
 import DoctorEnrollment from "./pages/DoctorEnrollment";
 import DoctorProfileEdit from "./pages/DoctorProfileEdit";
 import DoctorProfileView from "./pages/DoctorProfileView";
+import DoctorCreatePrescription from "./pages/DoctorCreatePrescription";
 
 const queryClient = new QueryClient();
 
@@ -84,6 +85,7 @@ const App = () => (
           <Route path="/doctor/profile" element={<DoctorProfileView />} />
           <Route path="/doctor/profile/edit" element={<DoctorProfileEdit />} />
           <Route path="/doctor/settings" element={<DoctorProfile />} />
+          <Route path="/doctor/prescriptions/new" element={<DoctorCreatePrescription />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>
