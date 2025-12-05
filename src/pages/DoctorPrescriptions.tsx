@@ -345,8 +345,10 @@ const DoctorPrescriptions = () => {
 
                   {/* Actions */}
                   <div className="flex gap-2">
-                    <Button size="sm" variant="outline">
-                      <Eye className="w-4 h-4" />
+                    <Button size="sm" variant="outline" asChild>
+                      <Link to={`/doctor/prescriptions/${prescription.id}`}>
+                        <Eye className="w-4 h-4" />
+                      </Link>
                     </Button>
                     <Button size="sm" variant="outline">
                       <Printer className="w-4 h-4" />
