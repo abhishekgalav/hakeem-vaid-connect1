@@ -41,7 +41,9 @@ import { cn } from "@/lib/utils";
 
 interface Medicine {
   id: string;
+  type: "own-formula" | "registered";
   name: string;
+  formulaDetails?: string;
   dosage: string;
   frequency: string;
   duration: string;
@@ -82,10 +84,31 @@ const DoctorCreatePrescription = () => {
     patient.phone.includes(patientSearch)
   );
 
+  // Mock registered medicines
+  const registeredMedicines = [
+    "Triphala Churna",
+    "Ashwagandha Capsules",
+    "Brahmi Vati",
+    "Chyawanprash",
+    "Arjunarishta",
+    "Dashmool Kwath",
+    "Giloy Ghanvati",
+    "Mahasudarshan Churna",
+    "Punarnava Mandur",
+    "Shatavari Churna",
+    "Sitopaladi Churna",
+    "Trikatu Churna",
+    "Yashtimadhu Churna",
+    "Amla Juice",
+    "Kumari Asava",
+  ];
+
   const addMedicine = () => {
     const newMedicine: Medicine = {
       id: Date.now().toString(),
+      type: "registered",
       name: "",
+      formulaDetails: "",
       dosage: "",
       frequency: "",
       duration: "",
@@ -318,14 +341,57 @@ const DoctorCreatePrescription = () => {
                             </Button>
                           </div>
                           
+                          {/* Medicine Type Selector */}
+                          <div className="space-y-2 mb-4">
+                            <Label>Medicine Type</Label>
+                            <div className="flex gap-2">
+                              <Button
+                                type="button"
+                                variant={medicine.type === "registered" ? "default" : "outline"}
+                                size="sm"
+                                className="flex-1"
+                                onClick={() => updateMedicine(medicine.id, "type", "registered")}
+                              >
+                                <Pill className="w-4 h-4 mr-2" />
+                                Registered Medicine
+                              </Button>
+                              <Button
+                                type="button"
+                                variant={medicine.type === "own-formula" ? "default" : "outline"}
+                                size="sm"
+                                className="flex-1"
+                                onClick={() => updateMedicine(medicine.id, "type", "own-formula")}
+                              >
+                                <FileText className="w-4 h-4 mr-2" />
+                                Own Formula
+                              </Button>
+                            </div>
+                          </div>
+
                           <div className="grid md:grid-cols-2 gap-4">
                             <div className="space-y-2">
-                              <Label>Medicine Name</Label>
-                              <Input
-                                placeholder="e.g., Triphala Churna"
-                                value={medicine.name}
-                                onChange={(e) => updateMedicine(medicine.id, "name", e.target.value)}
-                              />
+                              <Label>{medicine.type === "own-formula" ? "Formula Name" : "Medicine Name"}</Label>
+                              {medicine.type === "registered" ? (
+                                <Select
+                                  value={medicine.name}
+                                  onValueChange={(value) => updateMedicine(medicine.id, "name", value)}
+                                >
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select medicine" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {registeredMedicines.map((med) => (
+                                      <SelectItem key={med} value={med}>{med}</SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              ) : (
+                                <Input
+                                  placeholder="e.g., Custom Herbal Mix"
+                                  value={medicine.name}
+                                  onChange={(e) => updateMedicine(medicine.id, "name", e.target.value)}
+                                />
+                              )}
                             </div>
                             <div className="space-y-2">
                               <Label>Dosage</Label>
@@ -380,6 +446,19 @@ const DoctorCreatePrescription = () => {
                             </div>
                           </div>
                           
+                          {/* Formula Details - only for Own Formula */}
+                          {medicine.type === "own-formula" && (
+                            <div className="space-y-2">
+                              <Label>Formula Composition</Label>
+                              <Textarea
+                                placeholder="Enter formula ingredients and proportions..."
+                                value={medicine.formulaDetails || ""}
+                                onChange={(e) => updateMedicine(medicine.id, "formulaDetails", e.target.value)}
+                                rows={3}
+                              />
+                            </div>
+                          )}
+
                           <div className="space-y-2">
                             <Label>Special Instructions</Label>
                             <Input
