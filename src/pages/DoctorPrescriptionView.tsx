@@ -93,6 +93,10 @@ const DoctorPrescriptionView = () => {
 
   const prescription = mockPrescription; // In real app, fetch by id
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "sent":
@@ -110,7 +114,7 @@ const DoctorPrescriptionView = () => {
     <div className="min-h-screen bg-background">
       <DoctorHeader />
       
-      <main className="container mx-auto px-4 py-6 max-w-4xl">
+      <main className="container mx-auto px-4 py-6 max-w-4xl print:max-w-none print:px-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
@@ -118,12 +122,13 @@ const DoctorPrescriptionView = () => {
               variant="ghost" 
               size="icon"
               onClick={() => navigate("/doctor/prescriptions")}
+              className="print:hidden"
             >
               <ArrowLeft className="h-5 w-5" />
             </Button>
             <div>
               <div className="flex items-center gap-3">
-                <h1 className="text-2xl font-bold text-foreground">Prescription {prescription.id}</h1>
+                <h1 className="text-2xl font-bold text-foreground print:text-black">Prescription {prescription.id}</h1>
                 {getStatusBadge(prescription.status)}
               </div>
               <p className="text-muted-foreground text-sm mt-1">
@@ -132,8 +137,8 @@ const DoctorPrescriptionView = () => {
             </div>
           </div>
           
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm">
+          <div className="flex gap-2 print:hidden">
+            <Button variant="outline" size="sm" onClick={handlePrint}>
               <Printer className="h-4 w-4 mr-2" />
               Print
             </Button>
