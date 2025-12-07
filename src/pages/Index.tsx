@@ -10,8 +10,8 @@ import {
   Calendar, 
   Video, 
   Pill, 
-  FlaskConical, 
-  Stethoscope, 
+  Sparkles, 
+  Salad, 
   Brain,
   Star,
   Clock,
@@ -90,14 +90,14 @@ const Index = () => {
               description="Authentic Ayurvedic products"
             />
             <QuickActionCard
-              icon={FlaskConical}
-              title="Lab Tests"
-              description="Health checkups at home"
+              icon={Sparkles}
+              title="Panchakarma"
+              description="Ayurvedic detox therapies"
             />
             <QuickActionCard
-              icon={Stethoscope}
-              title="Surgeries"
-              description="Traditional treatments"
+              icon={Salad}
+              title="Diet & Lifestyle"
+              description="Personalized wellness plans"
             />
             <QuickActionCard
               icon={Brain}
