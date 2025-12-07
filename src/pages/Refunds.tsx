@@ -86,16 +86,6 @@ const Refunds = () => {
         { condition: "Wrong item delivered", refund: "Full refund + replacement", status: "success" },
         { condition: "Opened or used products", refund: "No refund", status: "error" }
       ]
-    },
-    {
-      service: "Wellness Therapies",
-      icon: Leaf,
-      policies: [
-        { condition: "Cancelled 24+ hours before", refund: "100% refund", status: "success" },
-        { condition: "Cancelled within 24 hours", refund: "50% refund", status: "warning" },
-        { condition: "No-show without notice", refund: "No refund", status: "error" },
-        { condition: "Therapist unavailable", refund: "Full refund + ₹200 credit", status: "success" }
-      ]
     }
   ];
 
@@ -241,45 +231,159 @@ const Refunds = () => {
         </div>
       </section>
 
-      {/* Important Notes */}
+      {/* Doctor Refund & Cancellation Policy */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <Card className="p-8 lg:p-12 max-w-4xl mx-auto border-0 shadow-soft">
-            <h2 className="font-display text-2xl font-bold text-foreground mb-8 text-center">
-              Important Refund Information
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
+              Doctor Refund & Cancellation Policy
             </h2>
             
-            <div className="space-y-6">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h3 className="font-semibold text-lg text-blue-800 mb-3">Processing Time</h3>
-                <p className="text-blue-700 leading-relaxed">
-                  Refunds are processed within 5-7 business days to your original payment method. 
-                  The exact time may vary depending on your bank or payment provider.
+            <div className="prose prose-sm max-w-none text-muted-foreground space-y-6">
+              <p className="text-sm leading-relaxed">
+                This Refund & Cancellation Policy applies to all Healthcare Practitioners ("Doctor", "Practitioner", "You") 
+                who register on the hakeemmiyaa.com platform and pay for onboarding, subscriptions, listing, or 
+                promotional services offered by Hakeem Tech Review (herein "Company", "We", "Us", "Our").
+              </p>
+
+              <div>
+                <h3 className="font-semibold text-foreground text-base mb-2">1. NON-REFUNDABLE FEES</h3>
+                <p className="text-sm leading-relaxed">
+                  All payments made to the Company — including onboarding fees, subscription fees, promotional plans, 
+                  visibility boosts, or any other charges — are 100% non-refundable, regardless of usage, outcomes, or 
+                  cancellation requests.
                 </p>
               </div>
-              
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-6">
-                <h3 className="font-semibold text-lg text-amber-800 mb-3">Partial Refunds</h3>
-                <p className="text-amber-700 leading-relaxed">
-                  In some cases, partial refunds may be issued based on the service utilization 
-                  and timing of the cancellation request.
+
+              <div>
+                <h3 className="font-semibold text-foreground text-base mb-2">2. NO GUARANTEE OF RESULTS</h3>
+                <p className="text-sm leading-relaxed mb-2">
+                  The Platform provides exposure for visibility and potential patient acquisition but does not guarantee:
+                </p>
+                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                  <li>A specific number of leads, calls, or consultation count</li>
+                  <li>Patient bookings or guaranteed revenue</li>
+                  <li>Any specific revenue, clinic growth, or business outcome</li>
+                  <li>Lead quality, responsiveness, or conversion rate</li>
+                </ul>
+                <p className="text-sm leading-relaxed mt-2">
+                  The Doctor understands that all marketing is based on patient acquisition but fully assumes any risk from this listing.
                 </p>
               </div>
-              
-              <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-                <h3 className="font-semibold text-lg text-green-800 mb-3">Wallet Credits</h3>
-                <p className="text-green-700 leading-relaxed">
-                  For certain cancellations, we may offer wallet credits that can be used for 
-                  future purchases on our platform. Credits never expire.
+
+              <div>
+                <h3 className="font-semibold text-foreground text-base mb-2">3. AUTO-RENEWAL POLICY</h3>
+                <p className="text-sm leading-relaxed mb-2">
+                  All plans are currently on auto-set not to auto-renew by default.
                 </p>
+                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                  <li>If auto-renew is active, the Doctor authorizes automatic deduction on billing unit manually cancelled</li>
+                  <li>The Doctor must cancel before the next billing cycle to avoid this charge</li>
+                  <li>Once billed, after billing date, no refund applies</li>
+                </ul>
               </div>
-              
-              <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-                <h3 className="font-semibold text-lg text-red-800 mb-3">Non-Refundable Items</h3>
-                <p className="text-red-700 leading-relaxed">
-                  Opened medicines, completed consultations, and processed lab tests are 
-                  generally non-refundable unless there was an error on our part.
+
+              <div>
+                <h3 className="font-semibold text-foreground text-base mb-2">4. CANCELLATION POLICY</h3>
+                <p className="text-sm leading-relaxed mb-2">
+                  Doctors may cancel their subscription at any time, but:
                 </p>
+                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                  <li>No refund will be issued for the remaining period</li>
+                  <li>Subscription remains active until the billing period ends</li>
+                  <li>Cancellation only affects future renewals, not current charges</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-foreground text-base mb-2">5. LATE PAYMENT & GRACE PERIOD</h3>
+                <p className="text-sm leading-relaxed mb-2">
+                  If a subscription payment fails:
+                </p>
+                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                  <li>A 7-day grace period will be provided to update payment service</li>
+                  <li>If payment is not completed, the account will be suspended</li>
+                  <li>Suspended accounts lose access to leads, dashboards, and visibility</li>
+                  <li>No extensions or refunds granted for suspension time</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-foreground text-base mb-2">6. NO REFUND FOR LEAD QUALITY OR PATIENT RESPONSE</h3>
+                <p className="text-sm leading-relaxed mb-2">
+                  Doctors agree that the following do NOT qualify for refund or dispute:
+                </p>
+                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                  <li>Wrong numbers or inactive patients</li>
+                  <li>Patients waiting for online consultation</li>
+                  <li>Patients who cancel, dispute, or don't show</li>
+                  <li>Poor patient feedback or low lead volume</li>
+                  <li>Competition from other practitioners in same location</li>
+                  <li>Cancelled or rescheduled patient consultations</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-foreground text-base mb-2">7. CHARGEBACK PROHIBITION</h3>
+                <p className="text-sm leading-relaxed mb-2">
+                  Any chargeback attempt will result in:
+                </p>
+                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                  <li>Permanent removal from platform</li>
+                  <li>Legal recovery of all costs loss & damages</li>
+                  <li>Blacklisting across all associated platforms</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-foreground text-base mb-2">8. ONBOARDING FEE</h3>
+                <p className="text-sm leading-relaxed mb-2">
+                  The onboarding fee is a one-time setup and verification charge. It cannot be refunded or waived for:
+                </p>
+                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                  <li>Account inactivity</li>
+                  <li>Profile de-activation due to the platform</li>
+                  <li>Failure to generate leads or patients</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-foreground text-base mb-2">9. SERVICE INTERRUPTION</h3>
+                <p className="text-sm leading-relaxed mb-2">
+                  No refund will be issued for service interruption due to:
+                </p>
+                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                  <li>Maintenance or technical issues</li>
+                  <li>Third-party services/utility or unavailability</li>
+                  <li>Changes in medical industry regulations</li>
+                  <li>Patient demand fluctuations</li>
+                  <li>Profile inconsistencies or low ratings</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-foreground text-base mb-2">10. TERMINATION BY COMPANY</h3>
+                <p className="text-sm leading-relaxed mb-2">
+                  No refund will be issued if termination occurs due to:
+                </p>
+                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                  <li>Misconduct</li>
+                  <li>False credentials/errors</li>
+                  <li>Misbehavior or legal complaints</li>
+                  <li>Violation of platform policies</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-foreground text-base mb-2">11. POLICY ACCEPTANCE</h3>
+                <p className="text-sm leading-relaxed mb-2">
+                  By registering, paying, or continuing to use the Platform, the doctor confirms that:
+                </p>
+                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                  <li>They have read and accepted this policy</li>
+                  <li>They have rendered all payments as their final admission of liability</li>
+                  <li>They accept the no-refund policy and waive any potential rights to a guarantee</li>
+                </ul>
               </div>
             </div>
           </Card>
