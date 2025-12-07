@@ -239,68 +239,68 @@ const Refunds = () => {
               Doctor Refund & Cancellation Policy
             </h2>
             
-            <div className="prose prose-sm max-w-none text-muted-foreground space-y-6">
-              <p className="text-sm leading-relaxed">
-                This Refund & Cancellation Policy applies to all Healthcare Practitioners ("Doctor", "Practitioner", "You") 
-                who register on the hakeemmiyaa.com platform and pay for onboarding, subscriptions, listing, or 
-                promotional services offered by Hakeem Tech Review (herein "Company", "We", "Us", "Our").
-              </p>
-
-              <div>
-                <h3 className="font-semibold text-foreground text-base mb-2">1. NON-REFUNDABLE FEES</h3>
-                <p className="text-sm leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed mb-6 text-center">
+              This Refund & Cancellation Policy applies to all Healthcare Practitioners ("Doctor", "Practitioner", "You") 
+              who register on the hakeemmiyaa.com platform and pay for onboarding, subscriptions, listing, or 
+              promotional services offered by Hakeem Tech Review (herein "Company", "We", "Us", "Our").
+            </p>
+            
+            <div className="space-y-4">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-5">
+                <h3 className="font-semibold text-base text-red-800 mb-2">1. NON-REFUNDABLE FEES</h3>
+                <p className="text-red-700 text-sm leading-relaxed">
                   All payments made to the Company — including onboarding fees, subscription fees, promotional plans, 
                   visibility boosts, or any other charges — are 100% non-refundable, regardless of usage, outcomes, or 
                   cancellation requests.
                 </p>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-foreground text-base mb-2">2. NO GUARANTEE OF RESULTS</h3>
-                <p className="text-sm leading-relaxed mb-2">
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-5">
+                <h3 className="font-semibold text-base text-amber-800 mb-2">2. NO GUARANTEE OF RESULTS</h3>
+                <p className="text-amber-700 text-sm leading-relaxed mb-2">
                   The Platform provides exposure for visibility and potential patient acquisition but does not guarantee:
                 </p>
-                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                <ul className="list-disc list-inside text-amber-700 text-sm space-y-1 ml-2">
                   <li>A specific number of leads, calls, or consultation count</li>
                   <li>Patient bookings or guaranteed revenue</li>
                   <li>Any specific revenue, clinic growth, or business outcome</li>
                   <li>Lead quality, responsiveness, or conversion rate</li>
                 </ul>
-                <p className="text-sm leading-relaxed mt-2">
+                <p className="text-amber-700 text-sm leading-relaxed mt-2">
                   The Doctor understands that all marketing is based on patient acquisition but fully assumes any risk from this listing.
                 </p>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-foreground text-base mb-2">3. AUTO-RENEWAL POLICY</h3>
-                <p className="text-sm leading-relaxed mb-2">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-5">
+                <h3 className="font-semibold text-base text-blue-800 mb-2">3. AUTO-RENEWAL POLICY</h3>
+                <p className="text-blue-700 text-sm leading-relaxed mb-2">
                   All plans are currently on auto-set not to auto-renew by default.
                 </p>
-                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                <ul className="list-disc list-inside text-blue-700 text-sm space-y-1 ml-2">
                   <li>If auto-renew is active, the Doctor authorizes automatic deduction on billing unit manually cancelled</li>
                   <li>The Doctor must cancel before the next billing cycle to avoid this charge</li>
                   <li>Once billed, after billing date, no refund applies</li>
                 </ul>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-foreground text-base mb-2">4. CANCELLATION POLICY</h3>
-                <p className="text-sm leading-relaxed mb-2">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-5">
+                <h3 className="font-semibold text-base text-green-800 mb-2">4. CANCELLATION POLICY</h3>
+                <p className="text-green-700 text-sm leading-relaxed mb-2">
                   Doctors may cancel their subscription at any time, but:
                 </p>
-                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                <ul className="list-disc list-inside text-green-700 text-sm space-y-1 ml-2">
                   <li>No refund will be issued for the remaining period</li>
                   <li>Subscription remains active until the billing period ends</li>
                   <li>Cancellation only affects future renewals, not current charges</li>
                 </ul>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-foreground text-base mb-2">5. LATE PAYMENT & GRACE PERIOD</h3>
-                <p className="text-sm leading-relaxed mb-2">
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-5">
+                <h3 className="font-semibold text-base text-purple-800 mb-2">5. LATE PAYMENT & GRACE PERIOD</h3>
+                <p className="text-purple-700 text-sm leading-relaxed mb-2">
                   If a subscription payment fails:
                 </p>
-                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                <ul className="list-disc list-inside text-purple-700 text-sm space-y-1 ml-2">
                   <li>A 7-day grace period will be provided to update payment service</li>
                   <li>If payment is not completed, the account will be suspended</li>
                   <li>Suspended accounts lose access to leads, dashboards, and visibility</li>
@@ -308,12 +308,12 @@ const Refunds = () => {
                 </ul>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-foreground text-base mb-2">6. NO REFUND FOR LEAD QUALITY OR PATIENT RESPONSE</h3>
-                <p className="text-sm leading-relaxed mb-2">
+              <div className="bg-orange-50 border border-orange-200 rounded-lg p-5">
+                <h3 className="font-semibold text-base text-orange-800 mb-2">6. NO REFUND FOR LEAD QUALITY OR PATIENT RESPONSE</h3>
+                <p className="text-orange-700 text-sm leading-relaxed mb-2">
                   Doctors agree that the following do NOT qualify for refund or dispute:
                 </p>
-                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                <ul className="list-disc list-inside text-orange-700 text-sm space-y-1 ml-2">
                   <li>Wrong numbers or inactive patients</li>
                   <li>Patients waiting for online consultation</li>
                   <li>Patients who cancel, dispute, or don't show</li>
@@ -323,36 +323,36 @@ const Refunds = () => {
                 </ul>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-foreground text-base mb-2">7. CHARGEBACK PROHIBITION</h3>
-                <p className="text-sm leading-relaxed mb-2">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-5">
+                <h3 className="font-semibold text-base text-red-800 mb-2">7. CHARGEBACK PROHIBITION</h3>
+                <p className="text-red-700 text-sm leading-relaxed mb-2">
                   Any chargeback attempt will result in:
                 </p>
-                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                <ul className="list-disc list-inside text-red-700 text-sm space-y-1 ml-2">
                   <li>Permanent removal from platform</li>
                   <li>Legal recovery of all costs loss & damages</li>
                   <li>Blacklisting across all associated platforms</li>
                 </ul>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-foreground text-base mb-2">8. ONBOARDING FEE</h3>
-                <p className="text-sm leading-relaxed mb-2">
+              <div className="bg-teal-50 border border-teal-200 rounded-lg p-5">
+                <h3 className="font-semibold text-base text-teal-800 mb-2">8. ONBOARDING FEE</h3>
+                <p className="text-teal-700 text-sm leading-relaxed mb-2">
                   The onboarding fee is a one-time setup and verification charge. It cannot be refunded or waived for:
                 </p>
-                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                <ul className="list-disc list-inside text-teal-700 text-sm space-y-1 ml-2">
                   <li>Account inactivity</li>
                   <li>Profile de-activation due to the platform</li>
                   <li>Failure to generate leads or patients</li>
                 </ul>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-foreground text-base mb-2">9. SERVICE INTERRUPTION</h3>
-                <p className="text-sm leading-relaxed mb-2">
+              <div className="bg-slate-50 border border-slate-200 rounded-lg p-5">
+                <h3 className="font-semibold text-base text-slate-800 mb-2">9. SERVICE INTERRUPTION</h3>
+                <p className="text-slate-700 text-sm leading-relaxed mb-2">
                   No refund will be issued for service interruption due to:
                 </p>
-                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                <ul className="list-disc list-inside text-slate-700 text-sm space-y-1 ml-2">
                   <li>Maintenance or technical issues</li>
                   <li>Third-party services/utility or unavailability</li>
                   <li>Changes in medical industry regulations</li>
@@ -361,12 +361,12 @@ const Refunds = () => {
                 </ul>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-foreground text-base mb-2">10. TERMINATION BY COMPANY</h3>
-                <p className="text-sm leading-relaxed mb-2">
+              <div className="bg-rose-50 border border-rose-200 rounded-lg p-5">
+                <h3 className="font-semibold text-base text-rose-800 mb-2">10. TERMINATION BY COMPANY</h3>
+                <p className="text-rose-700 text-sm leading-relaxed mb-2">
                   No refund will be issued if termination occurs due to:
                 </p>
-                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                <ul className="list-disc list-inside text-rose-700 text-sm space-y-1 ml-2">
                   <li>Misconduct</li>
                   <li>False credentials/errors</li>
                   <li>Misbehavior or legal complaints</li>
@@ -374,12 +374,12 @@ const Refunds = () => {
                 </ul>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-foreground text-base mb-2">11. POLICY ACCEPTANCE</h3>
-                <p className="text-sm leading-relaxed mb-2">
+              <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-5">
+                <h3 className="font-semibold text-base text-emerald-800 mb-2">11. POLICY ACCEPTANCE</h3>
+                <p className="text-emerald-700 text-sm leading-relaxed mb-2">
                   By registering, paying, or continuing to use the Platform, the doctor confirms that:
                 </p>
-                <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+                <ul className="list-disc list-inside text-emerald-700 text-sm space-y-1 ml-2">
                   <li>They have read and accepted this policy</li>
                   <li>They have rendered all payments as their final admission of liability</li>
                   <li>They accept the no-refund policy and waive any potential rights to a guarantee</li>
