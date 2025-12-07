@@ -1,8 +1,26 @@
+import { useState } from "react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { 
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { 
   Clock, 
   CheckCircle, 
@@ -11,10 +29,43 @@ import {
   CreditCard,
   Package,
   Stethoscope,
-  TestTube
+  Leaf,
+  Send,
+  Phone,
+  Mail
 } from "lucide-react";
+import { toast } from "sonner";
 
 const Refunds = () => {
+  const [refundDialogOpen, setRefundDialogOpen] = useState(false);
+  const [supportDialogOpen, setSupportDialogOpen] = useState(false);
+  const [refundForm, setRefundForm] = useState({
+    orderType: "",
+    orderId: "",
+    reason: "",
+    details: ""
+  });
+  const [supportForm, setSupportForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: ""
+  });
+
+  const handleRefundSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success("Refund request submitted successfully! We'll review and respond within 24 hours.");
+    setRefundDialogOpen(false);
+    setRefundForm({ orderType: "", orderId: "", reason: "", details: "" });
+  };
+
+  const handleSupportSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success("Support request sent! Our team will contact you soon.");
+    setSupportDialogOpen(false);
+    setSupportForm({ name: "", email: "", phone: "", subject: "", message: "" });
+  };
   const refundPolicies = [
     {
       service: "Consultations",
@@ -37,13 +88,13 @@ const Refunds = () => {
       ]
     },
     {
-      service: "Lab Tests",
-      icon: TestTube,
+      service: "Wellness Therapies",
+      icon: Leaf,
       policies: [
-        { condition: "Cancelled before sample collection", refund: "100% refund", status: "success" },
-        { condition: "Sample collection failed (our fault)", refund: "Full refund", status: "success" },
-        { condition: "Sample collected successfully", refund: "No refund", status: "error" },
-        { condition: "Delayed reports (>48hrs)", refund: "50% refund", status: "warning" }
+        { condition: "Cancelled 24+ hours before", refund: "100% refund", status: "success" },
+        { condition: "Cancelled within 24 hours", refund: "50% refund", status: "warning" },
+        { condition: "No-show without notice", refund: "No refund", status: "error" },
+        { condition: "Therapist unavailable", refund: "Full refund + ₹200 credit", status: "success" }
       ]
     }
   ];
@@ -246,10 +297,12 @@ const Refunds = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="gold" size="lg">
+            <Button variant="gold" size="lg" onClick={() => setRefundDialogOpen(true)}>
+              <RefreshCw className="w-5 h-5 mr-2" />
               Request Refund
             </Button>
-            <Button variant="hero" size="lg">
+            <Button variant="hero" size="lg" onClick={() => setSupportDialogOpen(true)}>
+              <Phone className="w-5 h-5 mr-2" />
               Contact Support
             </Button>
           </div>
@@ -260,6 +313,172 @@ const Refunds = () => {
           </div>
         </div>
       </section>
+
+      {/* Request Refund Dialog */}
+      <Dialog open={refundDialogOpen} onOpenChange={setRefundDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <RefreshCw className="w-5 h-5 text-brand-gold" />
+              Request Refund
+            </DialogTitle>
+            <DialogDescription>
+              Fill out the form below to request a refund for your order.
+            </DialogDescription>
+          </DialogHeader>
+          
+          <form onSubmit={handleRefundSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="orderType">Order Type</Label>
+              <Select 
+                value={refundForm.orderType} 
+                onValueChange={(value) => setRefundForm({...refundForm, orderType: value})}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select order type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="consultation">Consultation</SelectItem>
+                  <SelectItem value="medicine">Medicine Order</SelectItem>
+                  <SelectItem value="therapy">Wellness Therapy</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="orderId">Order/Booking ID</Label>
+              <Input 
+                id="orderId"
+                placeholder="Enter your order or booking ID"
+                value={refundForm.orderId}
+                onChange={(e) => setRefundForm({...refundForm, orderId: e.target.value})}
+                required
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="reason">Reason for Refund</Label>
+              <Select 
+                value={refundForm.reason} 
+                onValueChange={(value) => setRefundForm({...refundForm, reason: value})}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select reason" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="cancelled">Cancelled booking</SelectItem>
+                  <SelectItem value="wrong-item">Wrong item delivered</SelectItem>
+                  <SelectItem value="damaged">Damaged product</SelectItem>
+                  <SelectItem value="not-satisfied">Not satisfied with service</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="details">Additional Details</Label>
+              <Textarea 
+                id="details"
+                placeholder="Please provide more details about your refund request..."
+                value={refundForm.details}
+                onChange={(e) => setRefundForm({...refundForm, details: e.target.value})}
+                rows={3}
+              />
+            </div>
+            
+            <Button type="submit" variant="gold" className="w-full">
+              <Send className="w-4 h-4 mr-2" />
+              Submit Refund Request
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Contact Support Dialog */}
+      <Dialog open={supportDialogOpen} onOpenChange={setSupportDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Phone className="w-5 h-5 text-brand-gold" />
+              Contact Support
+            </DialogTitle>
+            <DialogDescription>
+              Reach out to our support team for refund-related queries.
+            </DialogDescription>
+          </DialogHeader>
+          
+          <form onSubmit={handleSupportSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Full Name</Label>
+              <Input 
+                id="name"
+                placeholder="Enter your full name"
+                value={supportForm.name}
+                onChange={(e) => setSupportForm({...supportForm, name: e.target.value})}
+                required
+              />
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input 
+                  id="email"
+                  type="email"
+                  placeholder="your@email.com"
+                  value={supportForm.email}
+                  onChange={(e) => setSupportForm({...supportForm, email: e.target.value})}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone">Phone</Label>
+                <Input 
+                  id="phone"
+                  placeholder="+91 98765 43210"
+                  value={supportForm.phone}
+                  onChange={(e) => setSupportForm({...supportForm, phone: e.target.value})}
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="subject">Subject</Label>
+              <Input 
+                id="subject"
+                placeholder="Brief subject of your query"
+                value={supportForm.subject}
+                onChange={(e) => setSupportForm({...supportForm, subject: e.target.value})}
+                required
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="message">Message</Label>
+              <Textarea 
+                id="message"
+                placeholder="Describe your issue in detail..."
+                value={supportForm.message}
+                onChange={(e) => setSupportForm({...supportForm, message: e.target.value})}
+                rows={4}
+                required
+              />
+            </div>
+            
+            <Button type="submit" variant="gold" className="w-full">
+              <Mail className="w-4 h-4 mr-2" />
+              Send Message
+            </Button>
+          </form>
+          
+          <div className="pt-4 border-t text-center text-sm text-muted-foreground">
+            <p>Or call us directly at <strong>+91 98765 43210</strong></p>
+            <p className="text-xs mt-1">Available 24/7</p>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Footer />
     </div>
   );
 };
