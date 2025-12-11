@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { DoctorHeader } from "@/components/layout/doctor-header";
 import { Footer } from "@/components/layout/footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { 
   Calendar, 
   Clock, 
@@ -17,11 +20,25 @@ import {
   Settings,
   IndianRupee,
   Star,
-  UserCog
+  UserCog,
+  CalendarOff
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 const DoctorDashboard = () => {
+  const [awayMode, setAwayMode] = useState(false);
+  const { toast } = useToast();
+
+  const handleAwayModeChange = (checked: boolean) => {
+    setAwayMode(checked);
+    toast({
+      title: checked ? "Away Mode Enabled" : "Away Mode Disabled",
+      description: checked 
+        ? "You are now marked as unavailable. Patients won't be able to book appointments." 
+        : "You are now available for appointments.",
+    });
+  };
   return (
     <div className="min-h-screen bg-background">
       <DoctorHeader />
@@ -48,17 +65,47 @@ const DoctorDashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="flex gap-2">
-              <Button variant="outline" size="icon">
-                <Bell className="w-4 h-4" />
-              </Button>
-              <Button variant="outline" size="icon" asChild>
-                <Link to="/doctor/settings">
-                  <Settings className="w-4 h-4" />
-                </Link>
-              </Button>
+            <div className="flex items-center gap-4">
+              {/* Away Mode Toggle */}
+              <div className={`flex items-center gap-3 px-4 py-2 rounded-lg border ${awayMode ? 'bg-amber-50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-800' : 'bg-muted/50 border-border'}`}>
+                <CalendarOff className={`w-4 h-4 ${awayMode ? 'text-amber-600 dark:text-amber-400' : 'text-muted-foreground'}`} />
+                <Label htmlFor="away-mode-dashboard" className={`text-sm font-medium ${awayMode ? 'text-amber-800 dark:text-amber-200' : 'text-foreground'}`}>
+                  Away Mode
+                </Label>
+                <Switch
+                  id="away-mode-dashboard"
+                  checked={awayMode}
+                  onCheckedChange={handleAwayModeChange}
+                />
+              </div>
+              
+              <div className="flex gap-2">
+                <Button variant="outline" size="icon">
+                  <Bell className="w-4 h-4" />
+                </Button>
+                <Button variant="outline" size="icon" asChild>
+                  <Link to="/doctor/settings">
+                    <Settings className="w-4 h-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
+          
+          {/* Away Mode Banner */}
+          {awayMode && (
+            <div className="mt-4 p-4 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg flex items-center gap-3">
+              <CalendarOff className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+              <div>
+                <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
+                  You are currently on leave
+                </p>
+                <p className="text-xs text-amber-600 dark:text-amber-400">
+                  Your profile shows as "On Leave" and patients cannot book appointments with you.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Quick Stats */}
