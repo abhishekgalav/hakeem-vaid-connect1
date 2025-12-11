@@ -6,11 +6,13 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Eye, EyeOff, Stethoscope, Shield, Users, Award } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { Eye, EyeOff, Stethoscope, Shield, Users, Award, CalendarOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const DoctorLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [awayMode, setAwayMode] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -165,6 +167,35 @@ const DoctorLogin = () => {
                   <Button variant="link" className="px-0 font-normal text-sm">
                     Forgot password?
                   </Button>
+                </div>
+
+                {/* Away Mode Toggle */}
+                <div className="p-4 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center">
+                        <CalendarOff className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                      </div>
+                      <div>
+                        <Label htmlFor="away-mode" className="text-sm font-medium text-amber-800 dark:text-amber-200">
+                          Away Mode (On Leave)
+                        </Label>
+                        <p className="text-xs text-amber-600 dark:text-amber-400">
+                          Enable if you're unavailable this week
+                        </p>
+                      </div>
+                    </div>
+                    <Switch
+                      id="away-mode"
+                      checked={awayMode}
+                      onCheckedChange={setAwayMode}
+                    />
+                  </div>
+                  {awayMode && (
+                    <p className="text-xs text-amber-700 dark:text-amber-300 mt-2 pl-11">
+                      Your profile will show as "On Leave" and patients won't be able to book appointments.
+                    </p>
+                  )}
                 </div>
               </CardContent>
 
